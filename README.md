@@ -39,3 +39,13 @@ following command.
 
 git clone http://git.qoto.org/aparapi/aparapi-docker.git
 ```
+
+## Building
+
+
+
+```bash
+docker build -t <image name> --build-arg "aparapiver=<aparapi Version>" amdgpu/
+docker build -t <image name> --build-arg "aparapiver=<aparapi Version>" nvidia/
+
+```
