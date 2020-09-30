@@ -1,0 +1,59 @@
+rev-git:
+extends: .build-docker
+only:
+  variables: [ $CI_COMMIT_REF_NAME == "develop" ]
+variables:
+  REV: "git"
+
+rev-latest:
+extends: .build-docker
+only:
+  variables: [ $CI_COMMIT_REF_NAME == "master" ]
+variables:
+  REV: "latest"
+
+rev-branch:
+extends: .build-docker
+only:
+  variables: [ $CI_COMMIT_REF_NAME =~ /[0-9]*.*/ ]
+variables:
+  REV: "${CI_COMMIT_REF_NAME}"
+
+.build-docker:
+image: docker:stable
+
+services:
+    - docker:stable-dind
+
+variables:
+    REPOSITORY: "aparapi/aparapi"
+    VERSION: "2.0.0"
+
+before_script:
+    - docker login -u "${DOCKER_USER}" -p "${DOCKER_TOKEN}"
+
+stages:
+    - opencl
+
+.opencl_template: &opencl_definition
+    stage: opencl
+    script:
+      - docker pull "${REPOSITORY}-nvidia:${REV}" || true
+      - docker build --network=host --pull -t "${REPOSITORY}-nvidia:${REV}"
+                     --cache-from "${REPOSITORY}-nvidia:${REV}"
+                     --build-arg "aparapi-ver=${VERSION}"
+                     "nvidia/"
+      - docker pull "${REPOSITORY}-amdgpu:${REV}" || true
+      - docker build --network=host --pull -t "${REPOSITORY}-amdgpu:${REV}"
+                     --cache-from "${REPOSITORY}-amdgpu:${REV}"
+                     --build-arg "aparapi-ver=${VERSION}"
+                     "amdgpu/"
+      - docker push "${REPOSITORY}-nvidia"
+      - docker push "${REPOSITORY}-amdgpu"
+    only
+      -master
+      -develop
+      -tags
+
+opencl:
+    <<: *opencl_definition
