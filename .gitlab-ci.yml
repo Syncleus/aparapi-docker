@@ -40,7 +40,7 @@ stages:
       - develop
       - tags
     tags:
-      - general
+      - dind
 
 opencl:
     <<: *opencl_definition
