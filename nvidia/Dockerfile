@@ -9,6 +9,7 @@ RUN apt-get update && \
 RUN apt-get update && \
     apt-get -y --no-install-recommends install \
       maven \
+      git \
       openjdk-14-jre \
       openjdk-14-jdk && \
     rm -rf /var/lib/{cache,log}
