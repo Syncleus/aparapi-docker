@@ -31,7 +31,9 @@ RUN apt-get update && \
     tar -xvf $AMDGPUDRIVERFILE && rm $AMDGPUDRIVERFILE && \
     ./$AMDGPUDIRNAME/amdgpu-pro-install -y --compute && \
     rm -rf $AMDGPUDIRNAME && \
-    apt-get install -y opencl-amdgpu-pro && \
+    apt-get install -y \
+      clinfo \
+      opencl-amdgpu-pro && \
     apt-get -y autoremove && \
     apt-get clean autoclean && \
     rm -rf /var/lib/{apt,cache,log}
