@@ -38,4 +38,6 @@ RUN apt-get update && \
 ARG aparapiver
 RUN mvn org.apache.maven.plugins:maven-dependency-plugin:2.1:get -DrepoUrl="https://repo1.maven.org/maven2/" -Dartifact=com.aparapi:aparapi:${aparapiver}
 
+RUN rm -rf /tmp/*
+
 ENV JAVA_HOME /usr/lib/jvm/java-14-openjdk-amd64/

@@ -2,6 +2,8 @@ FROM ubuntu:20.04
 
 LABEL maintainer "Jeffrey Phillips Freeman <the@jeffreyfreeman.me>"
 
+WORKDIR /tmp
+
 RUN apt-get update && \
     apt-get -y dist-upgrade && \
     rm -rf /var/lib/{cache,log}
@@ -28,6 +30,8 @@ RUN mkdir -p /etc/OpenCL/vendors && \
 
 ARG aparapiver
 RUN mvn org.apache.maven.plugins:maven-dependency-plugin:2.1:get -DrepoUrl="https://repo1.maven.org/maven2/" -Dartifact="com.aparapi:aparapi:${aparapiver}"
+
+RUN rm -rf /tmp/*
 
 # nvidia-container-runtime
 ENV NVIDIA_VISIBLE_DEVICES all
