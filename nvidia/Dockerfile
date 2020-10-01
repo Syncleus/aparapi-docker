@@ -32,3 +32,4 @@ RUN mvn org.apache.maven.plugins:maven-dependency-plugin:2.1:get -DrepoUrl="http
 # nvidia-container-runtime
 ENV NVIDIA_VISIBLE_DEVICES all
 ENV NVIDIA_DRIVER_CAPABILITIES compute,utility
+ENV JAVA_HOME /usr/lib/jvm/java-14-openjdk-amd64/

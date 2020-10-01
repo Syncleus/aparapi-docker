@@ -39,6 +39,8 @@ RUN apt-get update && \
 ARG aparapiver
 RUN mvn org.apache.maven.plugins:maven-dependency-plugin:2.1:get -DrepoUrl="https://repo1.maven.org/maven2/" -Dartifact=com.aparapi:aparapi:${aparapiver}
 
+ENV JAVA_HOME /usr/lib/jvm/java-14-openjdk-amd64/
+
 #RUN dpkg --add-architecture i386 && \
 #    apt-get update && apt-get -y dist-upgrade  && \
 #    apt-get -y --no-install-recommends install ca-certificates curl xz-utils
