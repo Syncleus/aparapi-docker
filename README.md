@@ -10,7 +10,8 @@
 This docker image serves as a means to easily test Aparapi based applications in a OpenCL and GPU enabled environment. Provided the host system has the appropriate hardware
 Aparapi applications can utilize GPU acceleration from this container.
 
-This docker image is based off the [Maven](https://hub.docker.com/_/ubuntu) docker image, and adds either AMD, NVIDIA, or pocl opencl support on top depending on which image you use.
+This docker image is based off the [Maven](https://hub.docker.com/_/ubuntu) docker image, and adds either AMD, NVIDIA, or pocl opencl dev support on top depending on which image you use. In addition it also adds OpenJDK-14, both JRE
+and JDK, git, maven, and predownloads the Aparapi Java dependency into the .M2 cache. It should be everything you need to run GPU accelerated Aparapi applications.
 
 ## Support and Documentation
 
