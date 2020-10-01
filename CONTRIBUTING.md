@@ -74,24 +74,29 @@ First ensure the package is prepared for the release process:
   * The branch name in the build pipeline badge
 * Ensure the Aparapi version set in .gitlab.yml correctly points to the correct version for the branch.
 * Update the changelog file.
+* When possible make all changes that are universal to all versions in the develop branch and merge to the others.
+* Develop should always have the latest Aparapi version.
 
 Next lets take a few steps to do the actual release:
 
-1.  Update everything listed above.
+1.  Update everything listed above. Any functional changes should be made in develop branch when possible. Make sure develop 
+    points to latest Aparapi version.
 2.  Checkout the branch for the Aparapi version you are working on, for example `git checkout 2.0.0` or create
     a new one if this is for a new version. For new branches make sure they are off of develop. Never add a `v` to the begining.
-3.  Update the README.md to ensure pipeline badge points to the correct branch for new branches.
-4.  Update .gitlab-ci.yml to ensure the Aparapi version points to the correct version fpr new branches.
-5.  Push the branch to the server, make sure pipeline passes, such as `git push origin 2.0.0:2.0.0`.
-6.  If pipeline passed, create a generic new branch, do not push it, as follows `git checkout -b release`.
-7.  Update the pipeline badge in the readme to point to the to-be-released repository tag/version.
-8.  Commit the current changes using a generic commit message such as `build(release): version 1.2.3 revision 4`. But do not push.
-
-7.  Create a new tag for the current version with the following command: `git tag -a v1.2.3-4 -m "Version 1.2.3 revision 4"`. Ensure 
+3.  Merge develop into the branch your working on, `git merge develop`.
+4.  Update the README.md to ensure pipeline badge points to the correct branch.
+5.  Update .gitlab-ci.yml to ensure the Aparapi version points to the correct version fpr new branches. If this is the latest version
+    of aparapi you should not need to update this, it should have been done in the first step.
+6.  Push the branch to the server, make sure pipeline passes, such as `git push origin 2.0.0:2.0.0`.
+7.  If pipeline passed, create a generic new branch, do not push it, as follows `git checkout -b release`.
+8.  Update the pipeline badge in the readme to point to the to-be-released repository tag/version.
+9.  Commit the current changes using a generic commit message such as `build(release): version 1.2.3 revision 4`. But do not push.
+10. Create a new tag for the current revision with the following command: `git tag -a v1.2.3-4 -m "Version 1.2.3 revision 4"`. Ensure 
     tags **always** have the aparapi version followed by revsion.
-8.  Push the newly created tag to the server: `git push origin v1.2.3-4:v1.2.3-4`.
-9.  Delete the release branch you created locally `git branch -D release`.
-9.  If the Aparapi version deployed is the latest then merge master and develop to the earlier aparapi version specific branch, **not**
-    to the tag you just pushed and not to the temporary release branch. Push master and develop if so. Make sure you update the pipeline
-    badge in both master and develop to point to their own branch before pushing.
-10. Go to Github and go to the release. Update the description with the changelog for the version.
+11. Push the newly created tag to the server: `git push origin v1.2.3-4:v1.2.3-4`.
+12. Delete the release branch you created locally `git branch -D release`.
+13. If the Aparapi version deployed is the latest then merge develop branch into master, develop branch should already contain latest
+    Aparapi version from the first step.
+14. Ensure the pipeline badge in the readme points to the master branch
+15. Push master branch to server.
+16. Go to Github and GitLab and go to the releases. Update the description with the changelog for the version.
