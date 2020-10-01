@@ -92,5 +92,6 @@ Next lets take a few steps to do the actual release:
 8.  Push the newly created tag to the server: `git push origin v1.2.3-4:v1.2.3-4`.
 9.  Delete the release branch you created locally `git branch -D release`.
 9.  If the Aparapi version deployed is the latest then merge master and develop to the earlier aparapi version specific branch, **not**
-    to the tag you just pushed and not to the temporary release branch. Push master and develop if so.
+    to the tag you just pushed and not to the temporary release branch. Push master and develop if so. Make sure you update the pipeline
+    badge in both master and develop to point to their own branch before pushing.
 10. Go to Github and go to the release. Update the description with the changelog for the version.
