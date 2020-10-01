@@ -2,9 +2,6 @@ FROM ubuntu:20.04
 
 LABEL maintainer "Jeffrey Phillips Freeman <the@jeffreyfreeman.me>"
 
-#ENV AMDGPUDRIVERFILE="amdgpu-pro-17.40-492261.tar.xz"
-#ENV AMDGPUDIRNAME="amdgpu-pro-17.40-492261"
-
 ENV AMDGPUDIRNAME="amdgpu-pro-20.20-1098277-ubuntu-20.04"
 ENV AMDGPUDRIVERFILE="${AMDGPUDIRNAME}.tar.xz"
 
@@ -42,12 +39,3 @@ ARG aparapiver
 RUN mvn org.apache.maven.plugins:maven-dependency-plugin:2.1:get -DrepoUrl="https://repo1.maven.org/maven2/" -Dartifact=com.aparapi:aparapi:${aparapiver}
 
 ENV JAVA_HOME /usr/lib/jvm/java-14-openjdk-amd64/
-
-#RUN dpkg --add-architecture i386 && \
-#    apt-get update && apt-get -y dist-upgrade  && \
-#    apt-get -y --no-install-recommends install ca-certificates curl xz-utils
-
-# only used to speedup build
-#COPY $AMDGPUDRIVERFILE /tmp/    
-#    curl -O https://download.b2go.cloud/AMD-GPU-PRO/$AMDGPUDRIVERFILE && \
-#    apt-get -y remove ca-certificates wget xz-utils && \
