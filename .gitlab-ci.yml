@@ -1,25 +1,43 @@
 image: docker:stable
 
-#services:
-#  - docker:stable-dind
+services:
+  - docker:stable-dind
 
 variables:
   REPOSITORY: "aparapi/aparapi"
   VERSION: "2.0.0"
-  #DOCKER_HOST: "tcp://docker:2375"
-  #DOCKER_TLS_CERTDIR: ""
-  #DOCKER_TLS_CERTDIR: "/certs"
-  #DOCKER_HOST: tcp://docker:2375
-  #DOCKER_TLS_CERTDIR: ""
 
 before_script:
   - echo "${DOCKER_TOKEN}" | docker login --username "${DOCKER_USER}" --password-stdin
 
 stages:
-   - opencl
+   - deploy
 
-.opencl_template: &opencl_definition
-    stage: opencl
+amdgpu:
+    stage: deploy
+    script:
+      - if [ $CI_COMMIT_REF_NAME == "develop" ]; then
+          REV="git";
+        elif [ $CI_COMMIT_REF_NAME == "master" ]; then
+          REV="latest";
+        else
+          REV="$CI_COMMIT_REF_NAME";
+        fi
+      - docker pull "${REPOSITORY}-amdgpu:${REV}" || true
+      - docker build --network=host --pull -t "${REPOSITORY}-amdgpu:${REV}"
+                     --cache-from "${REPOSITORY}-amdgpu:${REV}"
+                     --build-arg "aparapiver=${VERSION}"
+                     "amdgpu/"
+      - docker push "${REPOSITORY}-amdgpu"
+    only:
+      - master
+      - develop
+      - tags
+    tags:
+      - dind
+
+amdgpu:
+    stage: deploy
     script:
       - if [ $CI_COMMIT_REF_NAME == "develop" ]; then
           REV="git";
@@ -33,19 +51,10 @@ stages:
                      --cache-from "${REPOSITORY}-nvidia:${REV}"
                      --build-arg "aparapiver=${VERSION}"
                      "nvidia/"
-      - docker pull "${REPOSITORY}-amdgpu:${REV}" || true
-      - docker build --network=host --pull -t "${REPOSITORY}-amdgpu:${REV}"
-                     --cache-from "${REPOSITORY}-amdgpu:${REV}"
-                     --build-arg "aparapiver=${VERSION}"
-                     "amdgpu/"
       - docker push "${REPOSITORY}-nvidia"
-      - docker push "${REPOSITORY}-amdgpu"
     only:
       - master
       - develop
       - tags
     tags:
       - dind
-
-opencl:
-    <<: *opencl_definition
