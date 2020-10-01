@@ -24,15 +24,15 @@ Please file bugs and feature requests on [QOTO GitLab](https://git.qoto.org/apar
 
 ### Tags
 
-* latest - Will always be update-to-date reflecting the latest version of Aparapi released and may occasionaly reflect an updated base system such as newer version of OpenCL or ubuntu. This will track the master branch
+* *`latest`* - Will always be update-to-date reflecting the latest version of Aparapi released and may occasionaly reflect an updated base system such as newer version of OpenCL or ubuntu. This will track the master branch
 of this repository.
 
-* git - This will be any development versions of the images that exist, often, though not always, tracking the latest snapshot of aparapi. This will track the develop branch of this repostory
+* *`git`* - This will be any development versions of the images that exist, often, though not always, tracking the latest snapshot of aparapi. This will track the develop branch of this repostory
 
-* <Aparapi version> - Tags of this format, for example "2.0.0" will always be the latest version of the image for the given Aparapi version, in the example given the latest revision for Aparapi c2.0.0. These tags track
+* *`<Aparapi version>`* - Tags of this format, for example "2.0.0" will always be the latest version of the image for the given Aparapi version, in the example given the latest revision for Aparapi c2.0.0. These tags track
 the branch with the same name in this repository.
 
-* <Aparapi version>-rev - Tags of this format, for example "2.0.0-1" will be fixed releases and the image is garunteed never to change. It will reflect the Docker image for the specific Aparapi version and revision number.
+* *`<Aparapi version>-<revision>`* - Tags of this format, for example "2.0.0-1" will be fixed releases and the image is garunteed never to change. It will reflect the Docker image for the specific Aparapi version and revision number.
 Revsions will be released sequentially, as needed, as updated to the Docker image become availible. These tags will track the git tag with the same name in this repository.
 
 ## Related Projects
