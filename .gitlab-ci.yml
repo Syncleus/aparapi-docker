@@ -1,7 +1,7 @@
-image: docker:stable
+image: 19.03.12:stable
 
 services:
-  - docker:stable-dind
+  - docker:19.03.12-dind
 
 variables:
   REPOSITORY: "aparapi/aparapi"
