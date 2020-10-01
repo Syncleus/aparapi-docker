@@ -45,7 +45,7 @@ git clone http://git.qoto.org/aparapi/aparapi-docker.git
 
 
 ```bash
-docker build -t <image name> --build-arg "aparapiver=<aparapi Version>" amdgpu/
-docker build -t <image name> --build-arg "aparapiver=<aparapi Version>" nvidia/
+docker build --device /dev/dri:/dev/dri -t <image name> --build-arg "aparapiver=<aparapi Version>" amdgpu/
+docker build --device /dev/dri:/dev/dri -t <image name> --build-arg "aparapiver=<aparapi Version>" nvidia/
 
 ```
