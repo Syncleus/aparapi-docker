@@ -6,8 +6,9 @@ services:
 variables:
   REPOSITORY: "aparapi/aparapi"
   VERSION: "2.0.0"
-  DOCKER_HOST: "tcp://docker:2375"
-  DOCKER_TLS_CERTDIR: ""
+  #DOCKER_HOST: "tcp://docker:2375"
+  #DOCKER_TLS_CERTDIR: ""
+  DOCKER_TLS_CERTDIR: "/certs"
 
 before_script:
   - echo "${DOCKER_TOKEN}" | docker login --username "${DOCKER_USER}" --password-stdin
