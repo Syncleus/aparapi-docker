@@ -72,7 +72,7 @@ First ensure the package is prepared for the release process:
 
 * Make sure any references to the version number or branch name in the readme is at the pre-release branch/version
   * The branch name in the build pipeline badge
-* Ensure the Aparapi version set in .gitlab.yml correctly points to the pre-release SNAPSHOT
+* Ensure the Aparapi version set in .gitlab.yml correctly points to the correct version for the branch.
 * Update the changelog file.
 
 Next lets take a few steps to do the actual release:
