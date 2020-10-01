@@ -1,5 +1,7 @@
 ![](http://aparapi.com/images/logo-text-adjacent.png)
 
+[![pipeline status](http://git.qoto.org/aparapi/aparapi-docker/badges/master/pipeline.svg)](http://git.qoto.org/aparapi/aparapi-docker/-/commits/master)
+[![SemVer](https://img.shields.io/badge/SemVer-v2.0.0-green)](https://semver.org/spec/v2.0.0.html)
 [![License](http://img.shields.io/:license-apache-blue.svg?style=flat-square)](http://www.apache.org/licenses/LICENSE-2.0.html)
 [![Gitter](https://badges.gitter.im/Syncleus/aparapi.svg)](https://gitter.im/Syncleus/aparapi?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
@@ -74,6 +76,9 @@ docker run --device /dev/dri -it aparapi/aparapi-amdgpu:latest bash
 
 To run the NVIDIA based OpenCL implementation you can run the following command presuming you have the [NVIDIA Container Toolkit](https://github.com/NVIDIA/nvidia-docker) installed as well as the appropriate drivers.
 
+```bash
+docker run --runtime=nvidia -it aparapi/aparapi-nvidia:latest bash
+```
 
 To run pocl, which only supports CPU processing at the moment, run the following.
 
