@@ -1,7 +1,7 @@
-image: 19.03.12:stable
+image: docker:git
 
 services:
-  - docker:19.03.12-dind
+  - docker:dind
 
 variables:
   REPOSITORY: "aparapi/aparapi"
@@ -9,8 +9,8 @@ variables:
   #DOCKER_HOST: "tcp://docker:2375"
   #DOCKER_TLS_CERTDIR: ""
   #DOCKER_TLS_CERTDIR: "/certs"
-  DOCKER_HOST: tcp://docker:2375
-  DOCKER_TLS_CERTDIR: ""
+  #DOCKER_HOST: tcp://docker:2375
+  #DOCKER_TLS_CERTDIR: ""
 
 before_script:
   - ECHO $DOCKER_HOST
