@@ -23,9 +23,8 @@ amdgpu:
         else
           REV="$CI_COMMIT_REF_NAME";
         fi
-      - docker pull "${REPOSITORY}-amdgpu:${REV}" || true
       - docker build --network=host --pull -t "${REPOSITORY}-amdgpu:${REV}"
-                     --cache-from "${REPOSITORY}-amdgpu:${REV}"
+                     --no-cache
                      --build-arg "aparapiver=${VERSION}"
                      "amdgpu/"
       - docker push "${REPOSITORY}-amdgpu"
@@ -42,9 +41,8 @@ nvidia:
         else
           REV="$CI_COMMIT_REF_NAME";
         fi
-      - docker pull "${REPOSITORY}-nvidia:${REV}" || true
       - docker build --network=host --pull -t "${REPOSITORY}-nvidia:${REV}"
-                     --cache-from "${REPOSITORY}-nvidia:${REV}"
+                     --no-cache
                      --build-arg "aparapiver=${VERSION}"
                      "nvidia/"
       - docker push "${REPOSITORY}-nvidia"
@@ -61,9 +59,8 @@ pocl:
         else
           REV="$CI_COMMIT_REF_NAME";
         fi
-      - docker pull "${REPOSITORY}-pocl:${REV}" || true
       - docker build --network=host --pull -t "${REPOSITORY}-pocl:${REV}"
-                     --cache-from "${REPOSITORY}-pocl:${REV}"
+                     --no-cache
                      --build-arg "aparapiver=${VERSION}"
                      "pocl/"
       - docker push "${REPOSITORY}-pocl"
