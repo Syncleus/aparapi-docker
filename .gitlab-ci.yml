@@ -17,11 +17,11 @@ stages:
     stage: opencl
     script:
       - if [ $CI_COMMIT_REF_NAME == "develop" ]; then
-          REV = "git";
+          REV="git";
         elif [ $CI_COMMIT_REF_NAME == "master" ]; then
-          REV = "latest";
+          REV="latest";
         else
-          REV = "$CI_COMMIT_REF_NAME";
+          REV="$CI_COMMIT_REF_NAME";
         fi
       - docker pull "${REPOSITORY}-nvidia:${REV}" || true
       - docker build --network=host --pull -t "${REPOSITORY}-nvidia:${REV}"
