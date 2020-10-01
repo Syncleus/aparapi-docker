@@ -29,10 +29,6 @@ amdgpu:
                      --build-arg "aparapiver=${VERSION}"
                      "amdgpu/"
       - docker push "${REPOSITORY}-amdgpu"
-    only:
-      - master
-      - develop
-      - tags
     tags:
       - dind
 
@@ -52,10 +48,6 @@ nvidia:
                      --build-arg "aparapiver=${VERSION}"
                      "nvidia/"
       - docker push "${REPOSITORY}-nvidia"
-    only:
-      - master
-      - develop
-      - tags
     tags:
       - dind
 
@@ -75,9 +67,5 @@ pocl:
                      --build-arg "aparapiver=${VERSION}"
                      "pocl/"
       - docker push "${REPOSITORY}-pocl"
-    only:
-      - master
-      - develop
-      - tags
     tags:
       - dind
