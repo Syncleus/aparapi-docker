@@ -58,3 +58,26 @@ nvidia:
       - tags
     tags:
       - dind
+
+pocl:
+    stage: deploy
+    script:
+      - if [ $CI_COMMIT_REF_NAME == "develop" ]; then
+          REV="git";
+        elif [ $CI_COMMIT_REF_NAME == "master" ]; then
+          REV="latest";
+        else
+          REV="$CI_COMMIT_REF_NAME";
+        fi
+      - docker pull "${REPOSITORY}-pocl:${REV}" || true
+      - docker build --network=host --pull -t "${REPOSITORY}-pocl:${REV}"
+                     --cache-from "${REPOSITORY}-pocl:${REV}"
+                     --build-arg "aparapiver=${VERSION}"
+                     "pocl/"
+      - docker push "${REPOSITORY}-pocl"
+    only:
+      - master
+      - develop
+      - tags
+    tags:
+      - dind
