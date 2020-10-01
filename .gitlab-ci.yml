@@ -8,7 +8,9 @@ variables:
   VERSION: "2.0.0"
   #DOCKER_HOST: "tcp://docker:2375"
   #DOCKER_TLS_CERTDIR: ""
-  DOCKER_TLS_CERTDIR: "/certs"
+  #DOCKER_TLS_CERTDIR: "/certs"
+  DOCKER_HOST: tcp://docker:2375
+  DOCKER_TLS_CERTDIR: ""
 
 before_script:
   - echo "${DOCKER_TOKEN}" | docker login --username "${DOCKER_USER}" --password-stdin
