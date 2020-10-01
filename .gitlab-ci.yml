@@ -13,6 +13,7 @@ variables:
   DOCKER_TLS_CERTDIR: ""
 
 before_script:
+  - ECHO $DOCKER_HOST
   - echo "${DOCKER_TOKEN}" | docker login --username "${DOCKER_USER}" --password-stdin
 
 stages:
