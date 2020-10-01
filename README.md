@@ -1,6 +1,6 @@
 ![](http://aparapi.com/images/logo-text-adjacent.png)
 
-[![pipeline status](http://git.qoto.org/aparapi/aparapi-docker/badges/2.0.0/pipeline.svg)](http://git.qoto.org/aparapi/aparapi-docker/-/commits/2.0.0)
+[![pipeline status](http://git.qoto.org/aparapi/aparapi-docker/badges/2.0.0-1/pipeline.svg)](http://git.qoto.org/aparapi/aparapi-docker/-/commits/2.0.0-1)
 [![SemVer](https://img.shields.io/badge/SemVer-v2.0.0-green)](https://semver.org/spec/v2.0.0.html)
 [![License](http://img.shields.io/:license-apache-blue.svg?style=flat-square)](http://www.apache.org/licenses/LICENSE-2.0.html)
 [![Gitter](https://badges.gitter.im/Syncleus/aparapi.svg)](https://gitter.im/Syncleus/aparapi?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
