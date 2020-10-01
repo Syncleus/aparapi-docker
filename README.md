@@ -8,7 +8,7 @@
 This docker image serves as a means to easily test Aparapi based applications in a OpenCL and GPU enabled environment. Provided the host system has the appropriate hardware
 Aparapi applications can utilize GPU acceleration from this container.
 
-This docker image is based off the [Maven](https://hub.docker.com/_/maven) docker image, and adds either AMD, NVIDIA, or Intel opencl support on top depending on which tag you use.
+This docker image is based off the [Maven](https://hub.docker.com/_/ubuntu) docker image, and adds either AMD, NVIDIA, or pocl opencl support on top depending on which image you use.
 
 ## Support and Documentation
 
@@ -18,7 +18,20 @@ For detailed documentation see [Aparapi.com](http://Aparapi.com).
 
 For support please use [Gitter](https://gitter.im/Syncleus/aparapi) or the [official Aparapi mailing list and Discourse forum](https://discourse.qoto.org/c/PROJ/APA).
 
-Please file bugs and feature requests on [QOTO GitLab](https://git.qoto.org/aparapi/aparapi-jni/issues) older issues are archived at [Github](https://github.com/Syncleus/aparapi/issues).
+Please file bugs and feature requests on [QOTO GitLab](https://git.qoto.org/aparapi/aparapi-docker/issues).
+
+### Tags
+
+* latest - Will always be update-to-date reflecting the latest version of Aparapi released and may occasionaly reflect an updated base system such as newer version of OpenCL or ubuntu. This will track the master branch
+of this repository.
+
+* git - This will be any development versions of the images that exist, often, though not always, tracking the latest snapshot of aparapi. This will track the develop branch of this repostory
+
+* <Aparapi version> - Tags of this format, for example "2.0.0" will always be the latest version of the image for the given Aparapi version, in the example given the latest revision for Aparapi c2.0.0. These tags track
+the branch with the same name in this repository.
+
+* <Aparapi version>-rev - Tags of this format, for example "2.0.0-1" will be fixed releases and the image is garunteed never to change. It will reflect the Docker image for the specific Aparapi version and revision number.
+Revsions will be released sequentially, as needed, as updated to the Docker image become availible. These tags will track the git tag with the same name in this repository.
 
 ## Related Projects
 
@@ -47,6 +60,7 @@ This repo holds multiple versions of images depending on the opencl implementati
 ```bash
 docker build -t <image name> --build-arg "aparapiver=<aparapi Version>" amdgpu/
 docker build -t <image name> --build-arg "aparapiver=<aparapi Version>" nvidia/
+docker build -t <image name> --build-arg "aparapiver=<aparapi Version>" pocl/
 
 ```
 
@@ -60,8 +74,11 @@ docker run --device /dev/dri -it aparapi/aparapi-amdgpu:latest bash
 
 To run the NVIDIA based OpenCL implementation you can run the following command presuming you have the [NVIDIA Container Toolkit](https://github.com/NVIDIA/nvidia-docker) installed as well as the appropriate drivers.
 
+
+To run pocl, which only supports CPU processing at the moment, run the following.
+
 ```bash
-docker run --runtime=nvidia -it aparapi/aparapi-nvidia:latest bash
+docker run -it aparapi/aparapi-pocl:latest bash
 ```
 
 ### Using as a Gitlab Runner
