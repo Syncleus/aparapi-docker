@@ -2,7 +2,7 @@ FROM ubuntu:20.04
 
 LABEL maintainer "Jeffrey Phillips Freeman <the@jeffreyfreeman.me>"
 
-ENV AMDGPUDIRNAME="amdgpu-pro-20.20-1098277-ubuntu-20.04"
+ENV AMDGPUDIRNAME="amdgpu-pro-21.10-1247438-ubuntu-20.04"
 ENV AMDGPUDRIVERFILE="${AMDGPUDIRNAME}.tar.xz"
 
 WORKDIR /tmp
