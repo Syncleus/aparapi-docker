@@ -23,6 +23,7 @@ RUN apt-get update && \
     apt-get -y --no-install-recommends install \
       ca-certificates \
       wget \
+      initramfs-tools \
       xz-utils && \
     wget --referer https://www.amd.com/en/support/kb/release-notes/rn-amdgpu-unified-linux-20-30 https://drivers.amd.com/drivers/linux/${AMDGPUDRIVERFILE} &&\
     tar -xvf $AMDGPUDRIVERFILE && rm $AMDGPUDRIVERFILE && \
