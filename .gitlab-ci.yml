@@ -5,7 +5,7 @@ services:
 
 variables:
   REPOSITORY: "aparapi/aparapi"
-  VERSION: "2.0.0"
+  VERSION: "3.0.0"
 
 before_script:
   - echo "${DOCKER_TOKEN}" | docker login --username "${DOCKER_USER}" --password-stdin
