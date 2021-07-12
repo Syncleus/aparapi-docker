@@ -8,7 +8,7 @@ ENV AMDGPUDRIVERFILE="${AMDGPUDIRNAME}.tar.xz"
 WORKDIR /tmp
 
 RUN apt-get update && \
-    apt-get -y dist-upgrade && \
+#    apt-get -y dist-upgrade && \
     rm -rf /var/lib/{cache,log}
 
 RUN apt-get update && \
